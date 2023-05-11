@@ -1,0 +1,138 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #131316;
+  color: #ffffff;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+.no-decoration {
+  text-decoration: none;
+  color: black;
+}
+.item {
+  flex: 1;
+  margin-right: 10px;
+  background: #f6f6f6;
+  font-size: 18px;
+  padding: 7px 18px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #504f4f;
+}
+
+.item:hover {
+  background: #e7e7e7;
+}
+
+.item.active {
+  background: #d9e8ff;
+  color: #1f57dd;
+}
+
+.item.active:hover {
+  background: #c7ddff;
+}
+
+.area {
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 2.2fr;
+  gap: 0.2em 0.2em;
+  grid-auto-flow: row;
+  grid-template-areas: "left-p right-p";
+  place-items: center;
+  align-content: center;
+  min-height: 100vh;
+}
+
+.left-p {
+  grid-area: left-p;
+}
+
+.right-p {
+  grid-area: right-p;
+}
+
+section {
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 100vh;
+}
+
+section p {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.hidden {
+  opacity: 0;
+  filter: blur(5px);
+  transition: all 1s;
+}
+
+.from-left {
+  transform: translateX(-100%);
+}
+.from-right {
+  transform: translateX(100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hidden {
+    transition: all 1s;
+  }
+}
+
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}
+
+.iter:nth-child(1) {
+  transition-duration: 200ms;
+}
+.iter:nth-child(2) {
+  transition-duration: 400ms;
+}
+.iter:nth-child(3) {
+  transition-duration: 600ms;
+}
+
+ul {
+  z-index: 10;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+ul li {
+  float: left;
+}
+
+.link-head {
+  display: block;
+  padding: 8px;
+  /* background-color: #dddddd; */
+}
+
+.link-head {
+  display: block;
+  /* color: white; */
+  text-align: center;
+  padding: 16px 16px;
+  text-decoration: none;
+}
+.link-head:hover,
+.active {
+  background-color: #111;
+}
