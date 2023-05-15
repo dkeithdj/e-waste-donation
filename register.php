@@ -5,7 +5,9 @@ echo head("Register", "register");
 
 <!-- <script src="script.js"> </script> -->
 <section class="mx-5 adjust">
-  <h1>Register</h1>
+  <h1>
+    <center class="title">Register</center>
+  </h1>
   <form onsubmit="return confirm_password()" action="index.php#" class="row g-3" method="post">
     <div class="col-md-6">
       <label for class="form-label">First Name</label>

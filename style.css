@@ -32,6 +32,9 @@ body {
   overflow-x: hidden;
 }
 /*? Header */
+.title {
+  color: var(--accent-second);
+}
 .header {
   margin-bottom: 0;
   padding-left: 0;
@@ -54,53 +57,17 @@ body {
   display: block;
   padding: 8px;
   color: #f0fdf5;
-  /* text-decoration: none; */
-  /* background-color: #dddddd; */
-}
-
-.link-head {
-  display: block;
-  /* color: white; */
   text-align: center;
   padding: 16px 16px;
   text-decoration: none;
 }
+
 .link-head:hover,
 .active {
-  background-color: #111;
+  background-color: var(--neutral-select);
 }
 
-#title {
-  color: var(--accent-second);
-}
-.no-decoration {
-  text-decoration: none;
-  color: black;
-}
-.item {
-  flex: 1;
-  margin-right: 10px;
-  background: #f6f6f6;
-  font-size: 18px;
-  padding: 7px 18px;
-  border-radius: 4px;
-  text-decoration: none;
-  color: #504f4f;
-}
-
-.item:hover {
-  background: #e7e7e7;
-}
-
-.item.active {
-  background: #d9e8ff;
-  color: #1f57dd;
-}
-
-.item.active:hover {
-  background: #c7ddff;
-}
-
+/*? Index Body */
 .adjust {
   margin-top: -80px;
 }
@@ -181,15 +148,18 @@ section p {
   z-index: 99;
   border: none;
   outline: none;
-  background-color: red;
-  color: white;
+  background-color: var(--neutral-select);
+  color: var(--text);
   cursor: pointer;
   padding: 15px;
   border-radius: 10px;
   font-size: 18px;
+  transition: background-color 0.3s ease-in-out;
+  transition: color 0.2s ease-in-out;
 }
-#toTop {
-  background-color: red;
+#toTop:hover {
+  background-color: var(--text);
+  color: var(--neutral-select);
 }
 
 #contact {
@@ -198,4 +168,38 @@ section p {
 
 .theme {
   background-color: var(--neutral-main);
+}
+/* admin */
+.components {
+  background-color: var(--neutral-main) !important;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  align-content: start;
+  min-height: 100vh;
+}
+.stuff {
+  background-color: var(--neutral-select) !important;
+  color: #ffffff;
+}
+
+.center {
+  display: grid;
+  place-items: center;
+  place-content: center;
+}
+
+.grid-item {
+  width: 300px;
+  height: 200px;
+}
+/* playground */
+.click-cat {
+  width: 300px;
+  height: 200px;
+  background-color: var(--neutral-select);
+  transition: width 0.2s ease-in-out;
+}
+.click-cat:hover {
+  width: 400px;
 }

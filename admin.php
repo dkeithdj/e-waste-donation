@@ -12,20 +12,41 @@ echo head("Admin", "admin");
 </div>
 <div>card for overall donations</div>
 <div>card for specific types (multiple cards)</div>
-<div class="theme card">
-  <div class="row">
-    <div class="col">
-      col1
+<div class="container">
+  <div class="row px-1">
+    <div class="stuff card center mb-2">
+      <div class="col-lg-12 center">Total Donations</div>
+      <div class="col-lg-12 center">
+        <h1>25000</h1>
+      </div>
     </div>
-    <div class="col">
-      col2
-    </div>
   </div>
-  <div class="card-body">
-    Total Donations
+  <div class="row row-gap-2 ">
+
+    <?php
+    $categories = array("Computers", "Mobile Phones", "Television", "Appliances", "Batteries", "Others");
+    foreach ($categories as $category): ?>
+      <div class="col-md-4 px-1">
+        <div class="card" style="height: 100%;">
+          <img src="./blob/computer.jpg" alt="..." class="card-img-top" style="width: 200px; height: auto;">
+          <div class="card-body">
+            <h5 class="card-title">
+              <?= $category ?>
+            </h5>
+            <p class="card-text" style="color: black;">
+              2222
+            </p>
+          </div>
+        </div>
+      </div>
+    <?php endforeach; ?>
+
+
   </div>
-  <div class="card-body">
-  </div>
+
+
+
+</div>
 </div>
 
 <?php

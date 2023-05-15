@@ -59,7 +59,8 @@ echo head('Home', 'index');
 
 <section id="donate" class="hidden from-left">
   <h1>Donate here 🏥</h1>
-  <button onclick="document.location.href = 'account.php'" class="btn btn-warning">Herer</button>
+  <!-- data-bs-toggle="modal" data-bs-target="#exampleModal" -->
+  <button onclick="document.location.href = 'donate.php'" class="btn btn-warning">Herer</button>
   <!-- <p>theses links</p> -->
 </section>
 

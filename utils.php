@@ -56,8 +56,8 @@ function head($title, $activepage)
     </section> -->
     <ul class="header">
       <li>
-        <a href="<?php echo 'index' ?>.php" class="no-decoration">
-          <h1 id="title" style="padding: 8px 1rem 0 1rem; font-size: 2rem;">E-Donor</h1>
+        <a href="<?php echo 'index' ?>.php">
+          <h1 class="title" style="padding: 8px 1rem 0 1rem; font-size: 2rem;">E-Donor</h1>
         </a>
       </li>
       <li>
@@ -75,26 +75,26 @@ function head($title, $activepage)
       <li>
         <a href="index.php#contact" class="link-head">contact</a>
       </li>
-      <?php if ($isLoggedIn): ?>
-        <li style="float:right;">
-          <a href="#" class="link-head">logout</a>
-        </li>
-        <?php if ($isAdmin): ?>
-          <li style="float:right;">
-            <a href="admin.php" class="link-head">admin</a>
-          </li>
-        <?php else: ?>
-          <li style="float:right;">
-            <a href="account.php" class="link-head">account</a>
-          </li>
-        <?php endif; else: ?>
-        <li style="float:right;">
-          <a href="<?php echo 'register.php'; ?>" class="link-head">register</a>
-        </li>
-        <li style="float:right;">
-          <a href="#" class="link-head" data-bs-toggle="modal" data-bs-target="#exampleModal">login</a>
-        </li>
-      <?php endif ?>
+      <?php //if ($isLoggedIn): ?>
+      <li style="float:right;">
+        <a href="#" class="link-head">logout</a>
+      </li>
+      <?php // if ($isAdmin): ?>
+      <li style="float:right;">
+        <a href="admin.php" class="link-head">admin</a>
+      </li>
+      <?php //else: ?>
+      <li style="float:right;">
+        <a href="account.php" class="link-head">{account}</a>
+      </li>
+      <?php //endif; else: ?>
+      <li style="float:right;">
+        <a href="<?php echo 'register.php'; ?>" class="link-head">register</a>
+      </li>
+      <li style="float:right;">
+        <a href="#" class="link-head" data-bs-toggle="modal" data-bs-target="#exampleModal">login</a>
+      </li>
+      <?php //endif ?>
     </ul>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
