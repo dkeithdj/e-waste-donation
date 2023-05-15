@@ -4,9 +4,8 @@ echo head("Register", "register");
 ?>
 
 <!-- <script src="script.js"> </script> -->
-<h1>Register</h1>
-
-<section class="mx-5">
+<section class="mx-5 adjust">
+  <h1>Register</h1>
   <form onsubmit="return confirm_password()" action="index.php#" class="row g-3" method="post">
     <div class="col-md-6">
       <label for class="form-label">First Name</label>
@@ -37,7 +36,7 @@ echo head("Register", "register");
       <input id="re-password" type="password" class="form-control" name="retype_password" required>
     </div>
     <div class="col-12">
-      <button type="submit" class="btn btn-primary" style="display: flex; float: right;">Register</button>
+      <button type="submit" class="btn btn-warning" style="display: flex; float: right;">Submit</button>
     </div>
   </form>
 </section>

@@ -14,7 +14,8 @@ function connect()
 
 function head($title, $activepage)
 {
-  $isLoggedIn = false;
+  $isLoggedIn = true;
+  $isAdmin = true;
   ob_start(); ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -45,7 +46,7 @@ function head($title, $activepage)
   </head>
 
 
-  <body style="background-color: #131316;">
+  <body style="background-color: #00212a;">
 
     <!-- <section onclick="setActive(event)" id="headd">
       <a href="#?id=1" class="link-head active">A</a>
@@ -53,37 +54,45 @@ function head($title, $activepage)
       <a href="#" class="link-head">C</a>
       <a href="#" class="link-head">D</a>
     </section> -->
-    <ul style="background-color: beige; margin-bottom: 0;">
+    <ul class="header">
       <li>
         <a href="<?php echo 'index' ?>.php" class="no-decoration">
-          <h1 style="padding-top:8px; font-size: 2rem;">E-Donor</h1>
+          <h1 id="title" style="padding: 8px 1rem 0 1rem; font-size: 2rem;">E-Donor</h1>
         </a>
       </li>
       <li>
-        <a href="#the-facts" class="link-head">the facts</a>
+        <a href="index.php#the-facts" class="link-head">the facts</a>
       </li>
       <li>
-        <a href="#the-information" class="link-head">the information</a>
+        <a href="index.php#the-information" class="link-head">the information</a>
       </li>
       <li>
-        <a href="#faq" class="link-head">faq</a>
+        <a href="index.php#faq" class="link-head">faq</a>
       </li>
       <li>
-        <a href="#contact" class="link-head">contact</a>
+        <a href="index.php#donate" class="link-head">donate</a>
+      </li>
+      <li>
+        <a href="index.php#contact" class="link-head">contact</a>
       </li>
       <?php if ($isLoggedIn): ?>
         <li style="float:right;">
-          <a href="#" class="link-head">Logout</a>
+          <a href="#" class="link-head">logout</a>
+        </li>
+        <?php if ($isAdmin): ?>
+          <li style="float:right;">
+            <a href="admin.php" class="link-head">admin</a>
+          </li>
+        <?php else: ?>
+          <li style="float:right;">
+            <a href="account.php" class="link-head">account</a>
+          </li>
+        <?php endif; else: ?>
+        <li style="float:right;">
+          <a href="<?php echo 'register.php'; ?>" class="link-head">register</a>
         </li>
         <li style="float:right;">
-          <a href="#" class="link-head">Donate</a>
-        </li>
-      <?php else: ?>
-        <li style="float:right;">
-          <a href="<?php echo 'register.php'; ?>" class="link-head">Register</a>
-        </li>
-        <li style="float:right;">
-          <a href="#" class="link-head" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a>
+          <a href="#" class="link-head" data-bs-toggle="modal" data-bs-target="#exampleModal">login</a>
         </li>
       <?php endif ?>
     </ul>
@@ -91,11 +100,11 @@ function head($title, $activepage)
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header theme">
             <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body theme">
             <form class="row g-3" action="<?php echo 'index' ?>.php" method="get">
               <div class="col-md-12">
                 <label class="form-label">Email</label>
@@ -107,7 +116,7 @@ function head($title, $activepage)
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" value="Login" class="btn btn-primary">Sign in</button>
+                <button type="submit" value="Login" class="btn btn-warning">Sign in</button>
               </div>
             </form>
           </div>

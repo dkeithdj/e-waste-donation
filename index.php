@@ -17,7 +17,7 @@ echo head('Home', 'index');
 
 
 
-<div id="the-facts" class="area">
+<div id="the-facts" class="area adjust">
   <div style="position: relative;" class="left-p">
     <section class="hidden from-left">
       <h1>E - Donor</h1>
@@ -57,24 +57,22 @@ echo head('Home', 'index');
     vero, amet alias!</p>
 </section>
 
-
-<section id="contact" class="hidden from-left">
-  <h1>contact</h1>
-  <p>theses links</p>
+<section id="donate" class="hidden from-left">
+  <h1>Donate here 🏥</h1>
+  <button onclick="document.location.href = 'account.php'" class="btn btn-warning">Herer</button>
+  <!-- <p>theses links</p> -->
 </section>
 
-
-
-
-
-
+<section id="contact" style="min-height: 50vh;">
+  <h1>contact</h1>
+  <p><small>@ 2023</small></p>
+</section>
 
 
 <div style="position: relative;">
   <div style="z-index: 11; position: fixed; right: 10px; bottom: 20px;">
-    <a href="#" class="no-decoration">
-      <h1>0</h1>
-    </a>
+    <button onclick="topFunction()" id="toTop" title="Go to top">Top</button>
+
   </div>
 </div>
 <?php
