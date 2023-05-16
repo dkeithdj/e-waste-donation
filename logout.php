@@ -1,7 +1,6 @@
 <?php
 require_once 'utils.php';
-echo head("Register", "register");
+session_start();
+session_destroy();
+header("Location: index.php");
 ?>
-
-<?php
-echo footer();
