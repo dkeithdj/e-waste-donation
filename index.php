@@ -11,7 +11,8 @@ echo head('Home', 'index');
 //   endwhile;
 // endif;
 // mysqli_close(connect()) 
-?>
+$aa
+  ?>
 
 
 
@@ -60,7 +61,11 @@ echo head('Home', 'index');
 <section id="donate" class="hidden from-left">
   <h1>Donate here 🏥</h1>
   <!-- data-bs-toggle="modal" data-bs-target="#exampleModal" -->
-  <button onclick="document.location.href = 'donate.php'" class="btn btn-warning">Herer</button>
+  <?php $redir = "login.php";
+  if (isset($_SESSION["user"])):
+    $redir = "donate.php";
+  endif; ?>
+  <a href="<?= $redir ?>" class="btn btn-warning">Herer</a>
   <!-- <p>theses links</p> -->
 </section>
 
@@ -77,4 +82,5 @@ echo head('Home', 'index');
   </div>
 </div>
 <?php
+
 echo footer();

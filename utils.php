@@ -1,21 +1,17 @@
 <?php
-function connect()
-{
-  $servername = "localhost";
-  $username = "root";
-  $password = "root";
-  $dbName = "activity_proposal_system";
-  $conn = mysqli_connect($servername, $username, $password, $dbName);
-  if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-  }
-  return $conn;
-}
-
+session_start();
+include 'config.php';
 function head($title, $activepage)
 {
-  $isLoggedIn = true;
-  $isAdmin = true;
+  $user_id = 0;
+  $isAdmin = 0;
+  if (isset($_SESSION["user"])) {
+    $user_id = $_SESSION["user"]["id"];
+    $isAdmin = $_SESSION["user"]["isAdmin"];
+
+  }
+  $isLoggedIn = ($user_id != 0) ? true : false;
+  $isAdmin = ($isAdmin == 1) ? true : false;
   ob_start(); ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -30,17 +26,12 @@ function head($title, $activepage)
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>
       <?= $title; ?>
     </title>
 
-    <script>
-      const setActive = (e) => {
-        if (document.querySelector("a.link-head.active") !== null) {
-          document.querySelector("a.link-head.active").classList.remove("active");
-        }
-        e.target.className = "link-head active"
-      }
+    <script>     const setActive = (e) => { if (document.querySelector("a.link-head.active") !== null) { document.querySelector("a.link-head.active").classList.remove("active"); } e.target.className = "link-head active" }
 
     </script>
   </head>
@@ -75,65 +66,45 @@ function head($title, $activepage)
       <li>
         <a href="index.php#contact" class="link-head">contact</a>
       </li>
-      <?php //if ($isLoggedIn): ?>
-      <li style="float:right;">
-        <a href="#" class="link-head">logout</a>
-      </li>
-      <?php // if ($isAdmin): ?>
-      <li style="float:right;">
-        <a href="admin.php" class="link-head">admin</a>
-      </li>
-      <?php //else: ?>
-      <li style="float:right;">
-        <a href="account.php" class="link-head">{account}</a>
-      </li>
-      <?php //endif; else: ?>
-      <li style="float:right;">
-        <a href="<?php echo 'register.php'; ?>" class="link-head">register</a>
-      </li>
-      <li style="float:right;">
-        <a href="#" class="link-head" data-bs-toggle="modal" data-bs-target="#exampleModal">login</a>
-      </li>
-      <?php //endif ?>
+      <?php if ($isLoggedIn): ?>
+        <li style="float:right;">
+          <a href="logout.php" class="link-head">logout</a>
+        </li>
+        <?php if ($isAdmin): ?>
+          <li style="float:right;">
+            <a href="admin.php" class="link-head">admin</a>
+          </li>
+        <?php else: ?>
+          <li style="float:right;">
+            <a href="account.php" class="link-head">
+              <?= $_SESSION["user"]["username"] ?>
+            </a>
+          </li>
+        <?php endif; else: ?>
+        <li style="float:right;">
+          <a href="<?php echo 'register.php'; ?>" class="link-head">register</a>
+        </li>
+        <li style="float:right;">
+          <a href="login.php" class="link-head">login</a>
+        </li>
+      <?php endif ?>
     </ul>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal data-bs-toggle="modal" data-bs-target="#exampleModal" -->
+    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header theme">
+          <div class="modal-header theme" data-bs-theme="dark">
             <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body theme">
-            <form class="row g-3" action="<?php echo 'index' ?>.php" method="get">
-              <div class="col-md-12">
-                <label class="form-label">Email</label>
-                <input type="email" class="form-control" name="email">
-              </div>
-              <div class="col-md-12">
-                <label class="form-label">Password</label>
-                <input type="password" class="form-control" name="password">
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" value="Login" class="btn btn-warning">Sign in</button>
-              </div>
-            </form>
+
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <?php
-    $pass = $input = "";
-    if (isset($_GET["email"], $_GET["password"])) {
-      $input = $_GET["email"];
-      $pass = $_GET["password"];
-    }
-    echo $input . "<br>";
-    echo $pass;
-
-    $pages = array("index", "login", "register");
 
     return ob_get_clean();
 }
@@ -142,13 +113,14 @@ function footer()
 {
   ob_start(); ?>
     <script defer src="script.js"></script>
-    <script src="instantclick.min.js"></script>
-    <script data-no-instant>
-      InstantClick.init();
-    </script>
   </body>
 
   </html>
   <?php
   return ob_get_clean();
+}
+
+function debug($text)
+{
+  echo "<script>console.log('$text')</script>";
 }

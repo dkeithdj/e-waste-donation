@@ -8,34 +8,52 @@ echo head("Donate", "donate");
 
 <div class="container">
   <div class="row row-gap-2">
-    <h4>Categories</h4>
 
-    <form action="donate.php" method="post">
+    <form action="donate.php" class="row g-3" method="GET">
 
+      <div class="col-md-6">
+        <label class="form-label" for="item_name">Item Name</label>
+        <input class="form-control" type="text" id="item_name" name="item_name" required>
+      </div>
 
+      <div class="col-md-6">
+        <label class="form-label" for="category">Category</label>
+        <select class="form-control" id="category" name="dropdown">
+          <option value="computers" selected>computers</option>
+          <option value="phones">phones</option>
+          <option value="television">television</option>
+          <option value="appliances">appliances</option>
+          <option value="batteries">batteries</option>
+          <option value="others">others</option>
+        </select>
+      </div>
 
+      <div class="col-md-12">
+        <label class="form-label" for="description">Description</label>
+        <input class="form-control" type="text" id="description" name="description" required>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label" for="image">Image</label>
+        <input class="form-control" type="file" id="image" name="image">
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label" for="quantity">Quantity</label>
+        <input class="form-control" type="number" id="quantity" name="quantity" min="1" step="1" required>
+      </div>
+
+      <div class="col-12">
+        <button type="submit" class="btn btn-warning" style="display: flex; float: right;">Submit</button>
+      </div>
     </form>
     <?php
     $categories = array("computers", "phones", "television", "appliances", "batteries", "others");
-    foreach ($categories as $category): ?>
-      <div class="col-md-4 px-1">
-        <div class="card rounded-pill" style="height: 100%;">
-          <div class="card-body">
-            <h5 class="card-title p-0 m-0 text-center">
-              <?= $category ?>
-            </h5>
-            <input type="number" name="<?= $category ?>" id="<?= $category ?>">
-          </div>
-        </div>
-      </div>
-    <?php endforeach; ?>
+    ?>
 
 
   </div>
 </div>
 
-<div>
-  <button onclick="displayInput()" class="click-cat">aa</button>
-</div>
 <?php
 echo footer();

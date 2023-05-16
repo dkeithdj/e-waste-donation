@@ -46,3 +46,37 @@ function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+
+function displayInput() {
+  document.getElementById();
+}
+
+$(document).ready(function () {
+  // allowed maximum input fields
+  var max_input = 5;
+
+  // initialize the counter for textbox
+  var x = 1;
+
+  // handle click event on Add More button
+  $(".add-btn").click(function (e) {
+    e.preventDefault();
+    if (x < max_input) {
+      // validate the condition
+      x++; // increment the counter
+      $(".wrapper").append(`
+          <div class="input-box">
+            <input type="text" name="input_name[]"/>
+            <a href="#" class="remove-lnk">Remove</a>
+          </div>
+        `); // add input field
+    }
+  });
+
+  // handle click event of the remove link
+  $(".wrapper").on("click", ".remove-lnk", function (e) {
+    e.preventDefault();
+    $(this).parent("div").remove(); // remove input field
+    x--; // decrement the counter
+  });
+});

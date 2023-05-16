@@ -193,13 +193,7 @@ section p {
   width: 300px;
   height: 200px;
 }
+option {
+  color: var(--neutral-main);
+}
 /* playground */
-.click-cat {
-  width: 300px;
-  height: 200px;
-  background-color: var(--neutral-select);
-  transition: width 0.2s ease-in-out;
-}
-.click-cat:hover {
-  width: 400px;
-}
