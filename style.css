@@ -55,8 +55,12 @@ body {
   background-color: var(--neutral-select);
 } */
 /*? Index Body */
-.adjust {
-  /* margin-top: -80px; */
+.fill-stuff {
+  z-index: 30;
+  background-color: #00212a;
+  opacity: 20%;
+  height: 100vh;
+  width: auto;
 }
 .area {
   z-index: 5;

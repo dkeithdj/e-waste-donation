@@ -51,7 +51,7 @@ function head($title, $activepage)
       <a href="#" class="link-head">C</a>
       <a href="#" class="link-head">D</a>
     </section> -->
-    <nav class="navbar navbar-expand-lg  sticky-top nav-color" data-bs-theme="dark">
+    <nav id="navtop" class="navbar navbar-expand-lg  sticky-top nav-color" data-bs-theme="dark">
       <div class="container-fluid">
         <a class="title navbar-brand " href="index.php">E-Donate</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

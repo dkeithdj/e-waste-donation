@@ -26,7 +26,6 @@ $qry .= "WHERE is_checked = $filter ";
 $qry .= "ORDER BY d.date_time DESC;";
 $result = mysqli_query($conn, $qry);
 
-
 if ($result->num_rows > 0): ?>
   <div class="mx-5">
     <form class="row mt-3" action="admin.php" method="get">
