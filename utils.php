@@ -12,6 +12,8 @@ function head($title, $activepage)
   }
   $isLoggedIn = ($user_id != 0) ? true : false;
   $isAdmin = ($isAdmin == 1) ? true : false;
+  // $isLoggedIn = false;
+  // $isAdmin = false;
   ob_start(); ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -23,6 +25,10 @@ function head($title, $activepage)
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="blob/fontawesome/css/brands.css">
+    <link rel="stylesheet" href="blob/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="blob/fontawesome/css/solid.css">
+    <link rel="stylesheet" href="blob/fontawesome/css/regular.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"></script>
@@ -45,50 +51,76 @@ function head($title, $activepage)
       <a href="#" class="link-head">C</a>
       <a href="#" class="link-head">D</a>
     </section> -->
-    <ul class="header">
-      <li>
-        <a href="<?php echo 'index' ?>.php">
-          <h1 class="title" style="padding: 8px 1rem 0 1rem; font-size: 2rem;">E-Donor</h1>
-        </a>
-      </li>
-      <li>
-        <a href="index.php#the-facts" class="link-head">the facts</a>
-      </li>
-      <li>
-        <a href="index.php#the-information" class="link-head">the information</a>
-      </li>
-      <li>
-        <a href="index.php#faq" class="link-head">faq</a>
-      </li>
-      <li>
-        <a href="index.php#donate" class="link-head">donate</a>
-      </li>
-      <li>
-        <a href="index.php#contact" class="link-head">contact</a>
-      </li>
-      <?php if ($isLoggedIn): ?>
-        <li style="float:right;">
-          <a href="logout.php" class="link-head">logout</a>
-        </li>
-        <?php if ($isAdmin): ?>
-          <li style="float:right;">
-            <a href="admin.php" class="link-head">admin</a>
-          </li>
-        <?php else: ?>
-          <li style="float:right;">
-            <a href="account.php" class="link-head">
-              <?= $_SESSION["user"]["username"] ?>
-            </a>
-          </li>
-        <?php endif; else: ?>
-        <li style="float:right;">
-          <a href="<?php echo 'register.php'; ?>" class="link-head">register</a>
-        </li>
-        <li style="float:right;">
-          <a href="login.php" class="link-head">login</a>
-        </li>
-      <?php endif ?>
-    </ul>
+    <nav class="navbar navbar-expand-lg  sticky-top nav-color" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="title navbar-brand " href="index.php">E-Donate</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.php#the-facts">the facts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.php#the-information">the information</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.php#faq">faq</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.php#donate">donate</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.php#contact">contact</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav me-2 mb-2 mb-lg-0">
+            <?php if ($isLoggedIn): ?>
+              <?php if ($isAdmin): ?>
+                <li class="nav-item">
+                  <a href="admin.php" class="nav-link">admin</a>
+                </li>
+                <li class="nav-item">
+                  <a href=" logout.php" class="nav-link">logout</a>
+                </li>
+              <?php else: ?>
+                <li class="nav-item dropstart">
+                  <a class="nav-link dropdown-toggle" href="javascript:void(0)" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <?= $_SESSION["user"]["username"] ?>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="account.php">account</a></li>
+                    <li><a class="dropdown-item" href="donate.php">donations</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                      <p class="dropdown-item mb-0">🏆 Tokens:
+                        <?= $_SESSION["user"]["tokens"] ?>
+                      </p>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a href=" logout.php" class="nav-link">logout</a>
+                </li>
+              <?php endif; else: ?>
+              <li class="nav-item" style="float:right;">
+                <a href="login.php" class="nav-link">login</a>
+              </li>
+              <li class="nav-item" style="float:right;">
+                <a href="register.php" class="nav-link">register</a>
+              </li>
+            <?php endif ?>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
     <!-- Modal data-bs-toggle="modal" data-bs-target="#exampleModal" -->
     <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -118,6 +150,13 @@ function footer()
   </html>
   <?php
   return ob_get_clean();
+}
+
+function cleanInput($data)
+{
+  $data = trim($data);
+  $data = filter_var($data);
+  return $data;
 }
 
 function debug($text)

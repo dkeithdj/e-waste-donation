@@ -11,8 +11,7 @@ echo head('Home', 'index');
 //   endwhile;
 // endif;
 // mysqli_close(connect()) 
-$aa
-  ?>
+?>
 
 
 
@@ -22,11 +21,17 @@ $aa
   <div style="position: relative;" class="left-p">
     <section class="hidden from-left">
       <h1>E - Donor</h1>
-      <p>Donate now!</p>
+
+      <?php $redir = "login.php";
+      if (isset($_SESSION["user"])):
+        $redir = "donate.php";
+      endif; ?>
+      <a href="<?= $redir ?>" class="btn btn-warning">Donate now!</a>
     </section>
   </div>
   <div class="right-p">
     <section class="hidden from-right">
+      <h3>the facts</h3>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nam suscipit possimus nihil? Ut quia
         rem
         maxime dolore perferendis, dolorem sit dolor libero iure laudantium quo alias commodi, recusandae quam.</p>
@@ -36,8 +41,8 @@ $aa
 
 
 <section id="the-information" class="hidden from-left">
-  <h1>Having</h1>
-  <p>animations</p>
+  <h1>the information</h1>
+  <p>chu chu about the why, the purpose, and whatnot</p>
 </section>
 
 
@@ -59,19 +64,20 @@ $aa
 </section>
 
 <section id="donate" class="hidden from-left">
-  <h1>Donate here 🏥</h1>
+  <h1>About this donation ♻</h1>
   <!-- data-bs-toggle="modal" data-bs-target="#exampleModal" -->
-  <?php $redir = "login.php";
-  if (isset($_SESSION["user"])):
-    $redir = "donate.php";
-  endif; ?>
-  <a href="<?= $redir ?>" class="btn btn-warning">Herer</a>
   <!-- <p>theses links</p> -->
 </section>
 
 <section id="contact" style="min-height: 50vh;">
   <h1>contact</h1>
-  <p><small>@ 2023</small></p>
+  <p><small><i class="fa-solid fa-at fa-lg"></i> 2023</small></p>
+  <p> <i class="fa-solid fa-envelope fa-lg"></i> <span>d.dejesus.526255@umindanao.edu.ph</span></p>
+  <i class="fa-brands fa-facebook fa-lg"></i><br>
+  <i class="fa-brands fa-instagram fa-lg"></i><br>
+  <i class="fa-regular fa-envelope fa-lg"></i><br>
+  <i class="fa-solid fa-envelope fa-lg"></i><br>
+  <i class="fa-brands fa-github fa-lg"></i><br>
 </section>
 
 

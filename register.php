@@ -8,7 +8,7 @@ echo head("Register", "register");
   <h1>
     <center class="title">Register</center>
   </h1>
-  <form onsubmit="return confirm_password()" action="register.php" class="row g-3" method="post">
+  <form onsubmit="return confirm_password()" action="register.php" class="row g-3" method="POST">
     <div class="col-md-6">
       <label class="form-label">First Name</label>
       <input type="text" class="form-control" name="first_name" required>
@@ -58,13 +58,6 @@ echo head("Register", "register");
 //     echo $_POST[$input] . "<br>";
 //   }
 // }
-// Clean input by removing leading/trailing spaces and applying appropriate filtering
-function cleanInput($data)
-{
-  $data = trim($data);
-  $data = filter_var($data);
-  return $data;
-}
 
 if (isset($_POST['submit'])) {
   // Retrieve and clean form data
@@ -75,14 +68,12 @@ if (isset($_POST['submit'])) {
   $address = cleanInput($_POST['address']);
   $contact = cleanInput($_POST['contact']);
   $password = cleanInput($_POST['password']);
-  // $retype_password = cleanInput($_POST['retype_password']);
-
 
   $reg = $conn->prepare("INSERT INTO user (first_name, last_name, username, email_address, address, contact_number, password) VALUES (?, ?, ?, ?, ?, ?, ?)");
   $reg->bind_param("sssssss", $first_name, $last_name, $username, $email, $address, $contact, $password);
 
   if ($reg->execute()) {
-    header("Location: index.php");
+    echo "<script>window.location = 'login.php'</script>";
   } else {
     echo "Error: " . $reg->error;
   }
