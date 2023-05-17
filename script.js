@@ -50,33 +50,73 @@ function topFunction() {
 function displayInput() {
   document.getElementById();
 }
+//modal
+const exampleModal = document.getElementById("exampleModal");
+if (exampleModal) {
+  exampleModal.addEventListener("show.bs.modal", (event) => {
+    // Button that triggered the modal
+    const button = event.relatedTarget;
+    // Extract info from data-bs-* attributes
+    var recipient = button.getAttribute("data-don-values");
+    // If necessary, you could initiate an Ajax request here
+    // and then do the updating in a callback.
+    [title, category, quantity, description] = recipient.split(",");
 
+    // Update the modal's content.
+    exampleModal.querySelector(".modal-body #item_name").value = title;
+
+    const selections = exampleModal.querySelectorAll("select option");
+    selections.forEach((option) => {
+      if (category == option.value) {
+        option.setAttribute("selected", "true");
+      } else {
+        option.removeAttribute("selected");
+      }
+    });
+
+    exampleModal.querySelector("#quantity").value = quantity;
+    exampleModal.querySelector("#description").value = description;
+  });
+}
 $(document).ready(function () {
-  // allowed maximum input fields
-  var max_input = 5;
-
-  // initialize the counter for textbox
-  var x = 1;
-
-  // handle click event on Add More button
-  $(".add-btn").click(function (e) {
-    e.preventDefault();
-    if (x < max_input) {
-      // validate the condition
-      x++; // increment the counter
-      $(".wrapper").append(`
-          <div class="input-box">
-            <input type="text" name="input_name[]"/>
-            <a href="#" class="remove-lnk">Remove</a>
-          </div>
-        `); // add input field
-    }
-  });
-
-  // handle click event of the remove link
-  $(".wrapper").on("click", ".remove-lnk", function (e) {
-    e.preventDefault();
-    $(this).parent("div").remove(); // remove input field
-    x--; // decrement the counter
-  });
+  // $("#exampleModalToggle").modal("show");
 });
+
+// const modifyButtons = document.getElementById("modify-buttons");
+// const val = modifyButtons.getAttribute("data-don-isEdit");
+// // const aLink = document.querySelectorAll("#modify-buttons button");
+// var [is_checked, button_id] = val.split(",");
+// const aLink = document.querySelectorAll(`#modify-buttons button`);
+// // console.log(val);
+// // console.log(aLink);
+// aLink.forEach((button) => {
+//   if (is_checked == 1) {
+//     console.log(button);
+//     // modifyButtons.style.display = "none";
+
+//     button.setAttribute("disabled", "");
+//   } else {
+//     button.removeAttribute("disabled");
+//   }
+// });
+
+// const ed = document.getElementById(`${button_id}`);
+// const del = document.getElementById(`del_${button_id}`);
+// console.log(ed);
+// console.log(del);
+
+// console.log(aLink);
+// aLink.forEach((button) => {
+//   console.log(button);
+// });
+// if (is_checked == 1) {
+//   aLink.forEach((a) => {
+//     console.log(a);
+//     // a.setAttribute("disabled", "");
+//   });
+// } else {
+//   aLink.forEach((a) => {
+//     console.log(a);
+//     // a.removeAttribute("disabled");
+//   });
+// }

@@ -33,27 +33,15 @@ body {
 }
 /*? Header */
 .title {
-  color: var(--accent-second);
+  font-size: 30px !important;
+  color: var(--accent-second) !important;
 }
-.header {
-  margin-bottom: 0;
-  padding-left: 0;
-
-  z-index: 10;
-  position: sticky;
-  top: 0;
+.nav-color {
   background-color: var(--neutral-second);
-  list-style-type: none;
-  overflow: hidden;
+  color: var(--text);
 }
-.header li {
-  float: left;
-}
-.header * a {
-  text-decoration: none;
-}
-
-.link-head {
+/* ul == .header */
+/* .link-head {
   display: block;
   padding: 8px;
   color: #f0fdf5;
@@ -65,11 +53,10 @@ body {
 .link-head:hover,
 .active {
   background-color: var(--neutral-select);
-}
-
+} */
 /*? Index Body */
 .adjust {
-  margin-top: -80px;
+  /* margin-top: -80px; */
 }
 .area {
   z-index: 5;
