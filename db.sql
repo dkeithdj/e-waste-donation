@@ -6,7 +6,7 @@ CREATE TABLE user (
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
-    email_address VARCHAR(20) NOT NULL,
+    email_address VARCHAR(50) NOT NULL,
     contact_number VARCHAR(20) NOT NULL,
     password VARCHAR(50) NOT NULL,
     address VARCHAR(100) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE donation (
     description VARCHAR(50) NOT NULL,
     quantity INT DEFAULT 0,
     is_checked BOOLEAN DEFAULT 0,
-    date_time DATE DEFAULT CURRENT_DATE(),
+    date_time TIMESTAMP DEFAULT NOW(),
     FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (category_id) REFERENCES category(id)
 );
