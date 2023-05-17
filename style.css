@@ -187,4 +187,16 @@ section p {
 option {
   color: var(--neutral-main);
 }
-/* playground */
+
+.contacts {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.copyright {
+  display: flex;
+  justify-content: center;
+  background-color: var(--neutral-second);
+  padding-bottom: 10px;
+  margin: 0;
+}

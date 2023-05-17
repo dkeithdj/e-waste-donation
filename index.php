@@ -70,15 +70,27 @@ echo head('Home', 'index');
 </section>
 
 <section id="contact" style="min-height: 50vh;">
-  <h1>contact</h1>
-  <p><small><i class="fa-solid fa-at fa-lg"></i> 2023</small></p>
-  <p> <i class="fa-solid fa-envelope fa-lg"></i> <span>d.dejesus.526255@umindanao.edu.ph</span></p>
-  <i class="fa-brands fa-facebook fa-lg"></i><br>
-  <i class="fa-brands fa-instagram fa-lg"></i><br>
-  <i class="fa-regular fa-envelope fa-lg"></i><br>
-  <i class="fa-solid fa-envelope fa-lg"></i><br>
-  <i class="fa-brands fa-github fa-lg"></i><br>
+  <footer class="contacts">
+    <div style="display: grid;">
+      <div>
+        <img src="blob/ID_Photo_WhiteBG.png" alt="..." class="img-fluid rounded-circle"
+          style="max-height: 200px; width: auto;">
+      </div>
+      <div class="contacts mt-3">
+        <a href="mailto:d.dejesus.526255@umindanao.edu.ph"> <i class="fa-solid fa-envelope fa-xl"></i>
+        </a>
+        <a href="https://github.com/dkeithdj"> <i class="fa-brands fa-github fa-xl"></i>
+        </a>
+        <a href="https://www.facebook.com/dnrkth"> <i class="fa-brands fa-facebook fa-xl"></i>
+        </a>
+        <a href="https://www.instagram.com/denreikeith"> <i class="fa-brands fa-instagram fa-xl"></i>
+        </a>
+      </div>
+      <br>
+    </div>
+  </footer>
 </section>
+<p class="copyright"><small><i class="fa-regular fa-copyright"></i> 2023. e-donate - All rights reserved.</small></p>
 
 
 <div style="position: relative;">

@@ -4,7 +4,7 @@ include 'config.php';
 echo head("Register", "register");
 ?>
 
-<div class="container">
+<div class="container px-5">
   <h1>
     <center class="title">Register</center>
   </h1>

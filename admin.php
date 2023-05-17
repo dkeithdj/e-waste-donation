@@ -4,7 +4,7 @@ require_once 'modals.php';
 echo head("Admin", "admin");
 
 $id = $_SESSION["user"]["id"];
-$filter = "0";
+$filter = "0 OR 1";
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
   if (isset($_GET["filter"])) {

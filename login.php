@@ -5,10 +5,10 @@ require_once 'utils.php';
 echo head("Login", "login");
 ?>
 
-<div class="container">
+<div class="container px-5">
 
   <h1>
-    <center class="title">Login</center>
+    <center class="title pt-2">Login</center>
   </h1>
   <form class="row g-3" action="login.php" method="POST">
     <div class="col-md-12">
