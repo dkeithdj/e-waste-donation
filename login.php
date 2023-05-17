@@ -1,6 +1,6 @@
 <?php
 include 'config.php';
-include 'error.php';
+require_once 'modals.php';
 require_once 'utils.php';
 echo head("Login", "login");
 ?>
@@ -34,22 +34,16 @@ if (isset($_POST["email"], $_POST["password"])) {
   $stmt = mysqli_prepare($conn, "SELECT * FROM user WHERE email_address=? AND password=?");
   $stmt->bind_param("ss", $email_address, $password);
 
-  // $result = mysqli_query(connect(), $sql);
-  // $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-  // $count = mysqli_num_rows($result);
-
   $stmt->execute();
   $result = $stmt->get_result();
   if ($result->num_rows > 0) {
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $_SESSION["user"] = $row;
-    // var_dump($row);
-    // $_SESSION["user_id"] = $row["id"];
-    // $_SESSION["login_user"] = $row["username"];
 
     echo "<script>window.location = 'index.php'</script>";
   } else {
-    echo login_error();
+    $message = "Email or password is incorrect, try again";
+    echo login_error($message);
     ?>
     <script>
       $(document).ready(function () {
@@ -57,8 +51,6 @@ if (isset($_POST["email"], $_POST["password"])) {
       });
     </script>
     <?php
-    $error = "Your email address or password is invalid";
-    echo $error;
   }
 } else {
   debug("somthing wrong");

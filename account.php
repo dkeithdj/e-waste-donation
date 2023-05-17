@@ -1,6 +1,7 @@
 <?php
 require_once 'utils.php';
 include 'config.php';
+include 'modals.php';
 echo head("Account", "account");
 
 // if (isset($_GET["id"])) {
@@ -62,11 +63,16 @@ if ($result->num_rows > 0): ?>
               <div id="modify-buttons">
                 <div class="position-absolute top-0 end-0 p-3">
                   <form action="account.php" method="post">
+                    <button data-don-desc="<?= "$item_name,$description" ?>" data-bs-target="#readMoreModal"
+                      data-bs-toggle="modal" type="button" class="btn btn-success btn-sm"><i
+                        class="fa-solid fa-book"></i></button>
+
                     <button id="<?= $username . $don_id ?>" type="button" class="btn btn-primary btn-sm"
                       data-bs-toggle="modal" data-bs-target="#editModal"
                       data-don-values="<?= "$item_name,$category_id,$quantity,$description" ?>"><i
                         class="fa-regular fa-pen-to-square"></i></button>
                     <input type="number" name="don_id" value="<?= $row["id"] ?>" hidden>
+
                     <button name="delete_<?= $username . $don_id ?>" id="del_<?= $username . $don_id ?>" type="submit"
                       class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                   </form>

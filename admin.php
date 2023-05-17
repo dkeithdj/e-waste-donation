@@ -1,22 +1,50 @@
 <?php
 require_once 'utils.php';
+require_once 'modals.php';
 echo head("Admin", "admin");
 
 $id = $_SESSION["user"]["id"];
+$filter = "0";
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+  if (isset($_GET["filter"])) {
+    if ($_GET["filter"] == 0) {
+      $filter = "0";
+    } elseif ($_GET["filter"] == 1) {
+      $filter = "1";
+    } else {
+      $filter = "0 OR 1";
+    }
+  }
+}
 
 $qry = "SELECT d.*, u.tokens, u.username, c.category_name ";
 $qry .= "FROM donation d ";
 $qry .= "JOIN user u ON d.user_id = u.id ";
 $qry .= "JOIN category c ON d.category_id = c.id ";
-$qry .= "WHERE is_checked = 0 ";
-$qry .= "ORDER BY d.date_time;";
+$qry .= "WHERE is_checked = $filter ";
+$qry .= "ORDER BY d.date_time DESC;";
 $result = mysqli_query($conn, $qry);
 
 
 if ($result->num_rows > 0): ?>
   <div class="mx-5">
+    <form class="row mt-3" action="admin.php" method="get">
+      <div class="col-md-10">
+        <select name="filter" class="form-select" data-bs-theme="light">
+          <option value="0">Unchecked</option>
+          <option value="1">Checked</option>
+          <option value="2">All</option>
+        </select>
+      </div>
+      <div class="col-md-2 d-grid gap-0 px-1">
+        <button type="submit" class="btn btn-success me-md-2">Filter</button>
+      </div>
+    </form>
     <?php while ($row = $result->fetch_assoc()):
       $username = $row["username"];
+      $item_name = $row["item_name"];
+      $description = $row["description"];
       $id = $row["id"];
       ?>
       <div class="card my-3 nav-color" data-bs-theme="dark">
@@ -26,6 +54,12 @@ if ($result->num_rows > 0): ?>
               style="width: 100%; height: 200px; object-fit: cover;">
           </div>
           <div class="position-relative col-md-8">
+            <div class="position-absolute top-0 end-0 p-3">
+              <button data-don-desc="<?= "$item_name,$description" ?>" data-bs-target="#readMoreModal"
+                data-bs-toggle="modal" type="button" class="btn btn-success btn-sm"><i
+                  class="fa-solid fa-book"></i></button>
+            </div>
+
             <div class="card-body">
               <h3 class="card-title m-0">
                 <?= $row["item_name"] ?>
@@ -87,8 +121,8 @@ endif;
 
 <?php
 
-$result = mysqli_query($conn, $qry);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $result = mysqli_query($conn, $qry);
   if ($result->num_rows > 0):
     while ($row = $result->fetch_assoc()):
       $form_name = $row["username"] . $row["id"];

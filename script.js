@@ -51,9 +51,9 @@ function displayInput() {
   document.getElementById();
 }
 //modal
-const exampleModal = document.getElementById("exampleModal");
-if (exampleModal) {
-  exampleModal.addEventListener("show.bs.modal", (event) => {
+const editModal = document.getElementById("editModal");
+if (editModal) {
+  editModal.addEventListener("show.bs.modal", (event) => {
     // Button that triggered the modal
     const button = event.relatedTarget;
     // Extract info from data-bs-* attributes
@@ -63,9 +63,9 @@ if (exampleModal) {
     [title, category, quantity, description] = recipient.split(",");
 
     // Update the modal's content.
-    exampleModal.querySelector(".modal-body #item_name").value = title;
+    editModal.querySelector(".modal-body #item_name").value = title;
 
-    const selections = exampleModal.querySelectorAll("select option");
+    const selections = editModal.querySelectorAll("select option");
     selections.forEach((option) => {
       if (category == option.value) {
         option.setAttribute("selected", "true");
@@ -74,49 +74,33 @@ if (exampleModal) {
       }
     });
 
-    exampleModal.querySelector("#quantity").value = quantity;
-    exampleModal.querySelector("#description").value = description;
+    editModal.querySelector("#quantity").value = quantity;
+    editModal.querySelector("#description").value = description;
   });
 }
-$(document).ready(function () {
-  // $("#exampleModalToggle").modal("show");
-});
 
-// const modifyButtons = document.getElementById("modify-buttons");
-// const val = modifyButtons.getAttribute("data-don-isEdit");
-// // const aLink = document.querySelectorAll("#modify-buttons button");
-// var [is_checked, button_id] = val.split(",");
-// const aLink = document.querySelectorAll(`#modify-buttons button`);
-// // console.log(val);
-// // console.log(aLink);
-// aLink.forEach((button) => {
-//   if (is_checked == 1) {
-//     console.log(button);
-//     // modifyButtons.style.display = "none";
-
-//     button.setAttribute("disabled", "");
-//   } else {
-//     button.removeAttribute("disabled");
-//   }
-// });
-
-// const ed = document.getElementById(`${button_id}`);
-// const del = document.getElementById(`del_${button_id}`);
-// console.log(ed);
-// console.log(del);
-
-// console.log(aLink);
-// aLink.forEach((button) => {
-//   console.log(button);
-// });
-// if (is_checked == 1) {
-//   aLink.forEach((a) => {
-//     console.log(a);
-//     // a.setAttribute("disabled", "");
-//   });
-// } else {
-//   aLink.forEach((a) => {
-//     console.log(a);
-//     // a.removeAttribute("disabled");
+// function read_more(fields) {
+//   $(document).ready(function () {
+//     $("#readMoreModal").modal("show");
 //   });
 // }
+
+const readModal = document.getElementById("readMoreModal");
+if (readModal) {
+  readModal.addEventListener("show.bs.modal", (event) => {
+    // Button that triggered the modal
+    const button = event.relatedTarget;
+    // Extract info from data-bs-* attributes
+    var recipient = button.getAttribute("data-don-desc");
+    // If necessary, you could initiate an Ajax request here
+    // and then do the updating in a callback.
+    [title, description] = recipient.split(",");
+
+    // Update the modal's content.
+    var title_tag = readModal.querySelector(".modal-header #exampleModalLabel");
+    title_tag.textContent = title;
+
+    var description_tag = readModal.querySelector(".modal-body .modal-text");
+    description_tag.textContent = description;
+  });
+}
