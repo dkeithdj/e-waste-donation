@@ -1,54 +1,117 @@
 <?php
 require_once 'utils.php';
 echo head("Admin", "admin");
-?>
-<div style="color: white;">
-  <h1>TODO for admin page</h1>
-  <ul>
-    <li>Designs <strong>card view</strong></li><br>
-  </ul>
-</div>
-<div class="container">
-  <!-- <div class="row px-1">
-    <div class="stuff card center mb-2">
-      <div class="col-lg-12 center">Total Donations</div>
-      <div class="col-lg-12 center">
-        <h1>25000</h1>
-      </div>
-    </div>
-  </div> -->
-  <div class="row row-gap-2 ">
 
-    <form action="admin.php" class="row g-3" method="get">
-      <?php
-      $categories = array("Computers", "Mobile Phones", "Television", "Appliances", "Batteries", "Others");
-      foreach ($categories as $category): ?>
+$id = $_SESSION["user"]["id"];
 
-        <div class="px-1" data-bs-theme="dark">
-          <div class="card" style="height: 100%;">
-            <!-- <img src="./blob/computer.jpg" alt="..." class="card-img-top" style="width: 200px; height: auto;"> -->
+$qry = "SELECT d.*, u.tokens, u.username, c.category_name ";
+$qry .= "FROM donation d ";
+$qry .= "JOIN user u ON d.user_id = u.id ";
+$qry .= "JOIN category c ON d.category_id = c.id ";
+$qry .= "WHERE is_checked = 0 ";
+$qry .= "ORDER BY d.date_time;";
+$result = mysqli_query($conn, $qry);
+
+
+if ($result->num_rows > 0): ?>
+  <div class="mx-5">
+    <?php while ($row = $result->fetch_assoc()):
+      $username = $row["username"];
+      $id = $row["id"];
+      ?>
+      <div class="card my-3 nav-color" data-bs-theme="dark">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="<?= $row["image"] ?>" alt="..." class="img-thumbnail"
+              style="width: 100%; height: 200px; object-fit: cover;">
+          </div>
+          <div class="position-relative col-md-8">
             <div class="card-body">
-              <h5 class="card-title">
-                <?= $category ?>
-              </h5>
-              <div class="form-floating mb-3">
-                <input class="form-control" type="number" name="<?= $category ?>" min="0">
-                <label class="form-label" for="token">Tokens</label>
-                <input type="submit" value="Send">
-              </div>
+              <h3 class="card-title m-0">
+                <?= $row["item_name"] ?>
+              </h3>
+              <span class="card-text text-secondary">
+                From:
+                <?= $row["username"] ?>
+              </span>
+              <p class="card-text m-0">
+                Category:
+                <?= $row["category_name"] ?>
+              </p>
+              <p class="card-text m-0">
+                Quantity:
+                <?= $row["quantity"] ?>
+              </p>
+              <form action="admin.php" method="POST">
+                <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Value</span>
+                  <input name="<?= "value_" . $row["username"] . $row["id"] ?>" type="number" min="1" class="form-control"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="<?= $row["value"] ?>">
+                  <button class="btn btn-outline-warning" type="submit"
+                    name="<?= $row["username"] . $row["id"] ?>">Send</button>
+
+                  <?php
+                  // this is so unnecessary....
+                  if ($row["is_checked"] == 1) {
+                    $script = "<script defer>";
+                    $script .= "document.getElementsByName('value_$username$id')[0].setAttribute('disabled','');";
+                    $script .= "document.getElementsByName('$username$id')[0].setAttribute('disabled','');";
+                    $script .= "</script>";
+                    echo $script;
+                  } else {
+                    $script = "<script defer>";
+                    $script .= "document.getElementsByName('value_$username$id')[0].removeAttribute('disabled');";
+                    $script .= "document.getElementsByName('$username$id')[0].removeAttribute('disabled');";
+                    $script .= "</script>";
+                    echo $script;
+                  }
+                  ?>
+              </form>
+              <!-- <input type="submit" value="Send"> -->
+            </div>
+            <div class="position-absolute bottom-0 end-0 ">
+              <small class="card-subtitle m-3">
+                <?= $row["date_time"] ?>
+              </small>
             </div>
           </div>
         </div>
-      <?php endforeach; ?>
-    </form>
+      </div>
+    </div>
+  <?php endwhile;
+else:
+  echo "<h3><center class='title'>nothing yet...</center><h3>";
+endif;
 
-
-  </div>
-
-
-
-</div>
-</div>
+?>
 
 <?php
+
+$result = mysqli_query($conn, $qry);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if ($result->num_rows > 0):
+    while ($row = $result->fetch_assoc()):
+      $form_name = $row["username"] . $row["id"];
+      if (isset($_POST[$form_name])) {
+        $value = $_POST["value_" . $row["username"] . $row["id"]];
+
+        echo $value . " " . $row["id"];
+        $stmt = $conn->prepare("UPDATE donation SET value = ?, is_checked = 1 WHERE id = ?");
+        $stmt->bind_param("ii", $value, $row["id"]);
+
+        if ($stmt->execute()) {
+          $sum_token = $row["tokens"] + $value;
+          $add_token = $conn->prepare("UPDATE user SET tokens = ? WHERE id = ?");
+          $add_token->bind_param("ii", $sum_token, $row["user_id"]);
+          $add_token->execute();
+          echo "<script>window.location = 'admin.php'</script>";
+        }
+        break;
+      }
+    endwhile;
+  endif;
+
+}
+
+mysqli_close($conn);
 echo footer();
