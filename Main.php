@@ -3,7 +3,7 @@ function writeMsg($id, $title)
 {
   ?>
   <div class="card mx-5 my-3">
-    <a href="product.php?id=<?= $id ?>" class="no-decoration card-block stretched-link">
+    <a href="account.php?id=<?= $id ?>" class="no-decoration card-block stretched-link">
       <div class="row g-0">
         <div class="col-md-4">
           <img src="<?php echo './blob/UM.png'; ?>" class="img-fluid rounded-start" alt="...">

@@ -8,6 +8,9 @@ var observer = new IntersectionObserver((entries) => {
   });
 });
 
+var hiddenElements = document.querySelectorAll(".hidden");
+hiddenElements.forEach((el) => observer.observe(el));
+
 var confirm_password = () => {
   let password = document.getElementById("password");
   let re_password = document.getElementById("re-password");
@@ -19,10 +22,6 @@ var confirm_password = () => {
   }
   return true;
 };
-
-var hiddenElements = document.querySelectorAll(".hidden");
-hiddenElements.forEach((el) => observer.observe(el));
-
 var toTop = document.getElementById("toTop");
 
 // When the user scrolls down 20px from the top of the document, show the button

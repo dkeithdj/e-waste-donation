@@ -5,26 +5,43 @@ require_once 'utils.php';
 echo head("Login", "login");
 ?>
 
-<div class="container px-5">
 
-  <h1>
-    <center class="title pt-2">Login</center>
-  </h1>
-  <form class="row g-3" action="login.php" method="POST">
-    <div class="col-md-12">
-      <label class="form-label">Email</label>
-      <input type="email" class="form-control" name="email" required>
+<div class="container-fluid ps-md-0"
+  style="background-image: url('blob/leaves.png'); object-fit: cover; overflow-x: none; background-size: cover">
+  <div class="row g-0" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="login-heading mb-4">Welcome back!</h3>
+
+              <!-- Sign In Form -->
+              <form class="row g-3" action="login.php" method="POST">
+                <div class="col-md-12">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" name="email" required>
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">Password</label>
+                  <input type="password" class="form-control" name="password" required>
+                </div>
+                <div class="d-grid">
+                  <button id="login" type="submit" name="login"
+                    class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2">Login</button>
+                </div>
+              </form>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-md-12">
-      <label class="form-label">Password</label>
-      <input type="password" class="form-control" name="password" required>
-    </div>
-    <div class="col-md-12">
-      <button id="login" type="submit" name="login" class="btn btn-warning"
-        style="display: flex; float: right;">login</button>
-    </div>
-  </form>
+  </div>
 </div>
+
 
 <?php
 $max_login_attempts = 3;

@@ -35,11 +35,11 @@ echo head("Register", "register");
     </div>
     <div class="col-md-6">
       <label class="form-label">Password</label>
-      <input id="password" type="password" class="form-control" name="password" required>
+      <input id="password" type="password" class="form-control" name="password" minlength="8" required>
     </div>
     <div class="col-md-6">
       <label class="form-label">Retype Password</label>
-      <input id="re-password" type="password" class="form-control" name="retype_password" required>
+      <input id="re-password" type="password" class="form-control" name="retype_password" minlength="8" required>
     </div>
     <div class="col-12">
       <button type="submit" name="submit" class="btn btn-warning" style="display: flex; float: right;">Submit</button>

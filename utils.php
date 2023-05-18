@@ -23,6 +23,10 @@ function head($title, $activepage)
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="blob/fontawesome/css/brands.css">
@@ -53,7 +57,10 @@ function head($title, $activepage)
     </section> -->
     <nav id="navtop" class="navbar navbar-expand-lg  sticky-top nav-color" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="title navbar-brand " href="index.php">E-Donate</a>
+        <a class="title navbar-brand " href="index.php#"
+          style="font-family: Montserrat; font-weight: bolder; padding: 0 5% 0 5%;">
+          E-DONATE
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -61,19 +68,19 @@ function head($title, $activepage)
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="index.php#the-facts">the facts</a>
+              <a class="nav-link" href="index.php#the-facts">E-Waste</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.php#the-information">the information</a>
+              <a class="nav-link" href="index.php#the-information">Advocacy</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.php#faq">faq</a>
+              <a class="nav-link" href="index.php#steps">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.php#donate">donate</a>
+              <a class="nav-link" href="index.php#donate">Donate</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.php#contact">contact</a>
+              <a class="nav-link" href="index.php#contact">Contact</a>
             </li>
           </ul>
 
@@ -81,10 +88,10 @@ function head($title, $activepage)
             <?php if ($isLoggedIn): ?>
               <?php if ($isAdmin): ?>
                 <li class="nav-item">
-                  <a href="admin.php" class="nav-link">admin</a>
+                  <a href="admin.php" class="nav-link">Admin</a>
                 </li>
                 <li class="nav-item">
-                  <a href=" logout.php" class="nav-link">logout</a>
+                  <a href=" logout.php" class="nav-link">Logout</a>
                 </li>
               <?php else: ?>
                 <li class="nav-item dropstart">
@@ -93,8 +100,8 @@ function head($title, $activepage)
                     <?= $_SESSION["user"]["username"] ?>
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="account.php">account</a></li>
-                    <li><a class="dropdown-item" href="donate.php">donations</a></li>
+                    <li><a class="dropdown-item" href="account.php">Account</a></li>
+                    <li><a class="dropdown-item" href="donate.php">Donations</a></li>
                     <li>
                       <hr class="dropdown-divider">
                     </li>
@@ -110,10 +117,10 @@ function head($title, $activepage)
                 </li>
               <?php endif; else: ?>
               <li class="nav-item" style="float:right;">
-                <a href="login.php" class="nav-link">login</a>
+                <a href="login.php" class="nav-link">Login</a>
               </li>
               <li class="nav-item" style="float:right;">
-                <a href="register.php" class="nav-link">register</a>
+                <a href="register.php" class="nav-link">Register</a>
               </li>
             <?php endif ?>
           </ul>

@@ -2,14 +2,15 @@
 require_once 'utils.php';
 echo head("Donate", "donate");
 ?>
-<h1>
-  <center class="title">Donate</center>
+<h1 style="padding-top: 20px; ">
+  <center class="title" style="font-size: 50px;">Donate</center>
 </h1>
 
 <div class="container">
-  <div class="row row-gap-2">
+  <div class="row"
+    style="display:flex;flex-direction: row;align-items: center; justify-content: center; padding: 0 10% 0 10%;">
 
-    <form action="donate.php" class="row g-3" method="POST" enctype="multipart/form-data">
+    <form action="donate.php" class="row gy-3" method="POST" enctype="multipart/form-data">
 
       <div class="col-md-6">
         <label class="form-label" for="item_name">Item Name</label>
